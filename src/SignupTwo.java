@@ -8,7 +8,7 @@ public class SignupTwo extends JFrame implements ActionListener{
 	JButton next;
 	JRadioButton syes, sno, eyes, eno;
 	JComboBox religion, category, income, education, occupation;
-	String formno;
+	public String formno;
 	SignupTwo(String formno){
 		
 		this.formno = formno;
@@ -203,6 +203,8 @@ public class SignupTwo extends JFrame implements ActionListener{
 
 
 				//signup 3 frame
+				setVisible(false);
+				new SignupThree(formno).setVisible(true);
 
 		} catch (Exception e) {
 			// TODO: handle exception
