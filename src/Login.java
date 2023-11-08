@@ -2,6 +2,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.*;
+import java.sql.*;
 
 import javax.swing.*;
 
@@ -83,6 +84,24 @@ public class Login extends JFrame implements ActionListener{
 			cardTextField.setText("");
 			pinTextField.setText("");
 		}else if(ae.getSource() == login){
+			Conn conn = new Conn();
+			String cardNumber = cardTextField.getText();
+			String pinNumber = pinTextField.getText();
+			String query = "select * from login where cardNumber = '"+cardNumber+"' and pin = '"+pinNumber+"'";
+			try {
+				ResultSet rs = conn.s.executeQuery(query);
+				if(rs.next()){
+					setVisible(false);
+					new Transactions(pinNumber);
+				}else{
+					JOptionPane.showMessageDialog(null, "Incorrect Card no./PIN");
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println(e);
+			}
+
+
 
 		}else if(ae.getSource() == signup){
 			setVisible(false);
